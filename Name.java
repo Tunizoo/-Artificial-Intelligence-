@@ -1,7 +1,7 @@
 public class Name {
 	String expression;
 	Name root;//ex: Elephant is Animal
-	Name[] properties;//ex: Vegetarian
+	Fact[] properties;//ex: [Be Vegetarian, Have Long Nose]
 	public boolean equal(Name other){
 		if(expression==other.expression) return(true);
 		/*******************/
