@@ -1,11 +1,15 @@
 public class Name {
-	String expression;
+	NameExpressions expression;
 	Name root;//ex: Elephant is Animal
-	Name[] properties;//ex: Vegetarian
+	Fact[] properties;//ex: [Be Vegetarian, Have Long Nose]
 	public boolean equal(Name other){
 		if(expression==other.expression) return(true);
-		/*******************/
+		if(this.is(other)&&other.is(this)) return(true);
+		
 		return(false);
+	}
+	private protected Name[] children(){
+		/*get descendance of this name. ex: Hourse, Elephant... are descendant from Animal*/
 	}
 	public is(Name other){
 		Name r=this;

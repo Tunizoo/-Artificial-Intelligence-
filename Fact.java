@@ -6,8 +6,9 @@ public class Fact() {
 	Fact condition;//condition for the fact to be true (ex: Usual, if Night, etc)
 	public Fact not() {return(Fact(subject,relation.not(),object));}
 	public Fact and(Fact other){
-		if(this.is(other)||other.is(this)) return(this);
-		if(this.not().is(other)||other.not().is(this)) return(FALSE);
+		if(this.is(other)) return(this);
+		else if(other.is(this)) return(other);
+		else if(this.not().is(other)||other.not().is(this)) return(FALSE);
 		Fact result=new Fact;		
 		if(object==null&&other.object==null||object.equal(other.object)) {
 			result.object=object;
@@ -20,9 +21,9 @@ public class Fact() {
 				result.subject=subject.and(other.subject));
 			}
 			else {
-				result.subject=Name(this);
-				result.relation=AND;
-				result.object=Name(other);
+				result.subject=null;
+				result.relation=Name([Name([this.subject,this.relation]),AND,Name([other.subject,other.relation])]);
+				result.object=this.object;
 			}
 		}
 		else if(subject==null&&other.subject==null||subject.equal(other.subject)) {
@@ -36,9 +37,9 @@ public class Fact() {
 				result.object=object.and(other.object));
 			}
 			else {
-				result.subject=Name(this);
-				result.relation=AND;
-				result.object=Name(other);
+				result.subject=this.subject;
+				result.relation=Name([Name([this.relation,this.object]),AND,Name([other.relation,other.object])]);
+				result.object=null;
 			}
 		}
 		else {
