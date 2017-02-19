@@ -1,10 +1,28 @@
 public class Name {
 	String expression;
 	Name root;//ex: Elephant is Animal
-	Name[] properties;//ex: Vegetarian
+	Name[] adjectives;//ex: Vegetarian
+	Fact[] properties;//ex: has a long nos
 	public boolean equal(Name other){
+		//this function is useful when returns 'true' (in 'if' statemenbts)
+		//if it returns 'false', this may not always mean really false
+		if(this.getName()==other.getName()) return(true);
 		if(expression==other.expression) return(true);
-		/*******************/
+		if(this.root.getName()==other.root.getName()){
+			boolean find=false;
+			for(int i=0;i<this.adjectives.length;i++)
+			for(int j=0;j<other.adjectives.length;j++)				
+				if(this.adjectives[i].equals(other.adjectives[j])
+					find=true;
+			if(!find) return(false);
+			boolean find=false;
+			for(int i=0;i<this.properties.length;i++)
+			for(int j=0;j<other.properties.length;j++)				
+				if(this.properties[i].equivalent(other.properties[j])
+					find=true;
+			if(!find) return(false);
+		        return true;	
+		}	
 		return(false);
 	}
 	public is(Name other){
