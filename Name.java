@@ -1,5 +1,7 @@
+boolean _single=true, _compound=false;//single name like Hourse, compund like "Eye Of Hourse"
+
 public class Name {
-	boolean type;//single like "elepehant" / compound as "white elephant" or "eye of elephant"
+	boolean type;//_single / _compound
 	Name root;//ex: Elephant is Animal
 	Name[] adjectives;//Adjectives that serve to define the name
 			//Ex: 
@@ -36,12 +38,23 @@ public class Name {
 			r=r.root;
 		}
 		if(root.is(other.root))
-		{//are the properties of this included in those of other?
-			for(short i=0;i<properties.length;i++){
-				short j=0;
-				while(!properties[i].is(other.properties[j])) j++;
-				if(j==other.properties.length) return(false);
-			} return(true);
+		{
+			boolean test1=false,test2=false;
+		   if(adjectives.length>=other.adjectives.length){
+			//are the adjectives of this included in those of other?
+			for(int i=0;i<adjectives.length;i++){
+			    for(int j=0;j<other.adjectives.length;j+)
+				if(adjectives[i].is(other.adjectives[j])) {test1=true;break;}
+			    if(j==other.adjectives.length) return(false);
+			}test1=true;
+		   }if(properties.length>=other.properties.length){
+			//are the properties of this included in those of other?
+			for(int i=0;i<properties.length;i++){
+			    for(int j=0;j<other.properties.length;j+)
+				if(properties[i].is(other.properties[j])) {test1=true;break;}
+			    if(j==other.properties.length) return(false);
+			} test2=true;
+		   }	return(test1 && test2);
 		}	
 		return(false);		
 	}
