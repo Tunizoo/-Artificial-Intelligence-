@@ -1,13 +1,17 @@
 public class Name {
-	String expression;
+	boolean type;//single like "elepehant" / compound as "white elephant" or "eye of elephant"
 	Name root;//ex: Elephant is Animal
-	Name[] adjectives;//ex: Vegetarian
+	Name[] adjectives;//Adjectives that serve to define the name
+			//Ex: 
+			//to define an elephant (simple name)
+			//Vegetarian (Elephant is Animal which is Vegetarian)
+			//to define "Grey Elephant Of Asia"
+			//root:Elephant, adjectives:[Grey,[Of Asia]]
 	Fact[] properties;//ex: has a long nos
 	public boolean equal(Name other){
 		//this function is useful when returns 'true' (in 'if' statemenbts)
 		//if it returns 'false', this may not always mean really false
 		if(this.getName()==other.getName()) return(true);
-		if(expression==other.expression) return(true);
 		if(this.root.getName()==other.root.getName()){
 			boolean find=false;
 			for(int i=0;i<this.adjectives.length;i++)
