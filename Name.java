@@ -10,8 +10,31 @@ public class Name {
 			//to define "Grey Elephant Of Asia"
 			//root:Elephant, adjectives:[Grey,[Of Asia]]
 	Fact[] properties;//ex: has a long nos
+	private simplify(){
+		int i,j;
+		for(i=0;i<adjectives.length;i++)
+			for(j=0;j<adjectives.length;j++){
+				if(i==j) continue;
+				if(adjectives[j].is(adjectives[i])){
+					int k=j;
+					while(k<adjectives.length)
+						adjectives[k]=adjectives[++k];
+					adjectives[adjectives.length-1]=null;//remove last element
+				}
+			}	
+		for(i=0;i<properties.length;i++)
+			for(j=0;j<properties.length;j++){
+				if(i==j) continue;
+				if(properties[j].implies(properties[i])){
+					int k=j;
+					while(k<properties.length)
+						properties[k]=properties[++k];
+					properties[properties.length-1]=null;//remove last element
+				}
+			}	
+	}
 	public boolean equal(Name other){
-		//this function is useful when returns 'true' (in 'if' statemenbts)
+		//this function is useful only when returns 'true' (in 'if' statemenbts)
 		//if it returns 'false', this may not always mean really false
 		if(this.getName()==other.getName()) return(true);
 		if(this.root.getName()==other.root.getName()){
@@ -27,11 +50,12 @@ public class Name {
 				if(this.properties[i].equivalent(other.properties[j])
 					find=true;
 			if(!find) return(false);
-		        return true;	
+		        return true;	//find=true
 		}	
 		return(false);
 	}
 	public is(Name other){
+		//useful only if true (in if conditions..)
 		Name r=this;
 		while(r.root!=null){
 			if(r.root.equal(other)) return(true);
@@ -47,14 +71,16 @@ public class Name {
 				if(adjectives[i].is(other.adjectives[j])) {test1=true;break;}
 			    if(j==other.adjectives.length) return(false);
 			}test1=true;
-		   }if(properties.length>=other.properties.length){
+		   }else return false;
+		   if(properties.length>=other.properties.length){
 			//are the properties of this included in those of other?
 			for(int i=0;i<properties.length;i++){
 			    for(int j=0;j<other.properties.length;j+)
 				if(properties[i].is(other.properties[j])) {test1=true;break;}
 			    if(j==other.properties.length) return(false);
 			} test2=true;
-		   }	return(test1 && test2);
+		   }else return false;
+			return(test1 && test2);
 		}	
 		return(false);		
 	}
