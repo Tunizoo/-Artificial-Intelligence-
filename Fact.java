@@ -1,9 +1,13 @@
-public class Fact() {
+import DBaccess;
+public class Fact extands Name {
 	Name subject;
 	Name relation;
 	Name object;
 	//Ex: Cat(subject) Eat(relation) Mouse (object)
-	Fact condition;//condition for the fact to be true (ex: Usual, if Night, etc)
+	public veracity(){
+	//When this fact is true?
+	//FALSE, rarely, 30%, at night, in China, 50%, frequently, TRUE...
+	}
 	public Fact not() {return(Fact(subject,relation.not(),object));}
 	public Fact and(Fact other){
 		if(this.is(other)||other.is(this)) return(this);
