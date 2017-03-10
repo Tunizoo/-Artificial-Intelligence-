@@ -1,20 +1,15 @@
 import DBaccess;
 import ArrayList;
 public class Name {
-	String id;
-	Name[] terms;//for a compound name (ex:Nose Of Elephant)
-	Name[] definition;
-	//properties that serve to define this name
-	//Ex: 
-	//Elephant Is Animal
-	//Elephant Is Big 
-	//(Nose Of Elephant) Is Long
+	String id;//identifier in the Database
+	Name[] definition;//properties that serve to define this name
+			  //ex: Elephant: [Animal,Have Long Nose]
 	String expression(String language){
 	//expression of this name in a given language
 	}
-	public void define_redefine(){
-	//use properties that may be found in the database
-	//to define, or to redefine the name
+	public void readProperties(){
+	//read properties that may be found in the database
+	//Note: may be used to define, or to redefine the name
 	//eventually with simplification
     	    ArrayList properties=ArrayList();
 	    int i,j;
@@ -23,7 +18,7 @@ public class Name {
 	    Name[] other_props=DBaccess.search(this.id);
 	    if(other_props)
 		for(i=0;i<other_props.length;i++)
-		properties.add(other_props[i]);	
+		    properties.add(other_props[i]);	
 	    for(i=0;i<properties.length;i++)
 		for(j=0;j<properties.length;j++){
 			if(i==j) continue;
@@ -55,21 +50,7 @@ public class Name {
 			return(N);
 		}
 	}
-	public Name(Name[] terms){
-		this.id="_";
-		this.terms=terms;
-		this.define_redefine();
-		for(int i=0;i<props.length;i++){
-			this.id+=props[i].id[0];
-			if(props[i].id.length>1) this.id+=props[i].charAt(1);
-			else this.id+="-";
-			if(props[i].id.length>2) this.id+=props[i].charAt(2);
-			else this.id+="-";
-			if(props[i].id.length>3) this.id+=props[i].charAt(3);
-			else this.id+="-";
-			this.id+="";
-		}
-	}
+	public abstract Name(Name[] terms);//to define a complex name (see class cName)
 	public boolean equal(Name other){
 		//this function is useful only when returns 'true' (in 'if' statements)
 		//if it returns 'false', this may not always mean really false

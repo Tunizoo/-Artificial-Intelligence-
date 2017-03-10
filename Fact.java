@@ -1,8 +1,8 @@
 import DBaccess;
-public class Fact extands Name {
-	Name subject;
-	Name relation;
-	Name object;
+public class Fact extends cName {
+	Name subject=this.source;
+	//relation
+	Name object=this.destination;
 	//Ex: Cat(subject) Eat(relation) Mouse (object)
 	public veracity(){
 	//When this fact is true?
